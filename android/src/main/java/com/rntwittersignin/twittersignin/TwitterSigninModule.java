@@ -72,17 +72,14 @@ public class TwitterSigninModule extends ReactContextBaseJavaModule implements A
                 twitterAuthClient.requestEmail(session, new com.twitter.sdk.android.core.Callback<String>() {
                     @Override
                     public void success(Result<String> result) {
-                        map.putString("email", result.data);
+                        map.putString("email","");
                         promise.resolve(map);
                     }
 
                     @Override
                     public void failure(TwitterException exception) {
-                        map.putString("email", "COULD_NOT_FETCH");
-                        promise.reject(
-                                "COULD_NOT_FETCH",
-                                map.toString(),
-                                new Exception("Failed to obtain email", exception));
+                        map.putString("email", "");
+                        promise.resolve(map);
                     }
                 });
             }
